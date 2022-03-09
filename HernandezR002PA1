@@ -1,0 +1,176 @@
+/**
+ * @HernandezR002PA1.java
+ * @author Rafael Hernandez
+ * @version 1.0 2022/03/02 07:09
+ *
+ * PROGRAM PURPOSE: Create a program that tells an insured how much will be paid out if there is an earthquake.
+ * The payout is based on the insured value of the home and the richter scale.
+ */
+
+
+//IMPORT statements for use later in the program
+import java.util.Scanner; //Class to handle keyboard entries
+import java.util.Calendar; //Class to find current date and time within the program
+
+
+
+public class HernandezR002PA1
+{//BEGIN CLASS HernandezR002PA1
+  
+  public static double homeInsVal = 0.0;
+  public static double richter = 0.0;
+  public static double payout = 0.0;
+  public static double deductible = 0.0;
+  public static String insured = " ";
+  public static String message = " ";
+  public static String coverage = " ";
+  public static char cont = ' ';
+  public static char correct = ' ';
+  public static char another = ' ';
+  
+  public static void main(String[] args)
+  {//BEGIN main()
+    
+    Scanner input = new Scanner(System.in); //Scanner object to handle keyboard entries
+
+    System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%n");//Prompt 1
+    System.out.printf("%nDo you want analysis of earthquake coverage for your property? Enter 'Y' or 'N': ");//Prompt 1
+    
+    char cont = input.next().charAt(0); //Takes user input to determine if they would like to use the calculator
+    input.nextLine(); //Clears the buffer to allow the next input.nextLine to work correctly
+    
+    while (Character.toUpperCase(cont) == 'Y')
+    {//START while cont == 'Y'
+ 
+      System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%n%nEarthquake Coverage Analyzer");//Prompt 2
+      System.out.printf("%nPlease enter your name: ");//Prompt 2
+     
+      String insured = input.nextLine(); //Takes user input for insured person's name
+      
+      Calendar dateTime = Calendar.getInstance(); //Initializing instance of dateTime
+      
+      coverage = String.format("%n%nPAYOUT FOR EARTHQUAKE "
+                               + "DAMAGE"
+                               + "%n%nHomeowner: %S"
+                               + "%n%nDate: %tD"
+                               + "%nTime: %tr%n", insured, dateTime, dateTime);
+  
+      do
+      {//START do while 1
+        
+        do
+        {//START do while 2
+          System.out.printf("%nPlease enter the insured value of your home: ");//Prompt 3
+          
+          double homeInsVal = input.nextDouble(); //Takes user input for the home's insured value
+          
+          System.out.printf("Richter Scale     Damage Assessment%n     9.0+         Total destruction."//Prompt 4
+                              + "%n     8.0          Most structures fell.%n     7.0          Many buildings destroyed."
+                              + "%n     6.0          Many buildings considerably damaged, some collapsed."
+                              + "%n     4.5          Damage to poorly contructed buildings."
+                              + "%n     3.5          Felt by many people, no destruction.%n     0"
+                              + "            Generally not felt by people.%n%nPlease enter the Richter scale value"
+                              + " for the earthquake: ");
+          
+          double richter = input.nextDouble();//Reads user input for richter value
+          
+          if (richter >= 9.0)
+          {//START if richter >= 9.0
+            payout = homeInsVal * .90;
+            deductible = homeInsVal * .10;
+            message = "Total destruction.";
+          }//END if richter >= 9.0
+          
+          
+          else if (richter >= 8.0)
+          {//BEGIN if richter >= 8.0
+            payout = homeInsVal * .80;
+            deductible = homeInsVal * .20;
+            message = "Most structures fell.";
+          }
+          
+          else if (richter >= 7.0)
+          {
+            payout = homeInsVal * .70;
+            deductible = homeInsVal * .30;
+            message = "Many buildings destroyed.";
+          }
+          
+          else if (richter >= 6.0)
+          {
+            payout = homeInsVal * .60;
+            deductible = homeInsVal * .40;
+            message = "Many buildings considerably damaged, some collapsed.";
+          }
+          
+          else if (richter >= 4.5)
+          {
+            payout = homeInsVal * .50;
+            deductible = homeInsVal * .50;
+            message = "Damage to poorly constructed buildings";
+          }
+          
+          else if (richter >= 0)
+          {
+            payout = 0;
+            deductible = 0;
+            message = "Generally not felt by people.";
+             
+          }
+          
+          else
+          {
+            System.out.printf("Invalid! Cannot enter negative values.%n%n");
+          }
+          
+          
+          
+          System.out.printf("Your Name: %s"
+                             + "%nHome's Insured Value: $%,.2f"
+                             + "%nRichter Scale: %.2f" 
+                             + "%n%nIs this information correct? 'Y' or 'N' ",
+                                insured,  homeInsVal,  richter);//Prompt 5
+          
+          
+          correct = input.next().charAt(0);//Reads user input to verify information is correct
+          
+
+      
+        }while (Character.toUpperCase(correct) == 'N');//END do while 2  
+        {//START while correct == 'N'
+          if (richter >= 0);
+          {
+             coverage += String.format("%n%-52s %4s $%,20.2f"
+                                      + "%nDeductible %47s %,20.2f"
+                                      + "%n%46s TOTAL %4s $%,20.2f%n",
+                                      message, " ", payout, " ", deductible, " ",
+                                      " ", payout + deductible);
+          }
+          
+          System.out.printf("Do you have another property? 'Y' or 'N': ");//Prompt 6
+          
+          another = input.next().charAt(0);
+          
+        }//END while correct == 'N'
+        
+      }while(Character.toUpperCase(another) == 'Y');//END do while 1
+      {
+        if (richter >= 0);
+        {//START if richter >= 0
+          System.out.printf(coverage);//Print coverage if richter >= 0
+        }
+        
+        System.out.printf("MUTUALLY ACCIDENTAL, INC.%n%nEnter 'Y' to continue with another homeowner,"
+                            + "or 'N' to exit: ");//Prompt 7
+        
+      }
+      cont = input.next().charAt(0);//reprime the cont variable for exiting loop
+      input.nextLine();//clears buffer just in case you want to enter a new home owner
+      
+    }//END while cont == 'Y'
+    
+      System.out.printf("%nThank you for using the Earthquake Coverage Analyzer.%n");//Thank you!
+   
+  }//END main()
+ 
+}//END CLASS HernandezR002
