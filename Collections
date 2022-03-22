@@ -1,0 +1,106 @@
+/**
+ * @Collections.java
+ * @author Rafael Hernandez
+ * @version 1.0 2022/03/16 15:47
+ *
+ * PROGRAM PURPOSE: This is a calculator that will be able to tell you what materials you need in order to complete
+ * various collections in the game "Runescape". 
+ */
+
+//Import statements
+import java.util.Scanner; //Imports the scanner class for grabbing user input
+  
+public class Collections
+{//BEGIN class Collections
+  //BEGIN class variable initialization
+  public static Scanner input = new Scanner(System.in);
+  
+  public static int selection = 0; //This 'selection' variable will be used to determine which method to use
+  
+  public static char control = ' ';
+  
+  public static String[] collections = new String[1]; //The 'collections' will be used to initialize an array
+  
+  
+  public static void redRumRelicsI()//the purpose of this method is to find chronotes, exp, and materials
+  {//BEGIN redRumRelicsI
+    do
+    {//BEGIN do-while for redRumRelicsI
+      
+      System.out.printf("%nThank you for choosing to use the Red Rum Relics calculator!%n%n"
+                       +"How many collections are you able to complete? Enter a value: ");
+      //LOCAL variable initialization
+      
+      int total = input.nextInt();
+      int vulcanisedRubber = 24 * total;
+      int animalFurs = 20 * total;
+      int fossilisedBone = 84 * total;
+      int yubiuskClay = 30 * total;
+      int warforgedBronze = 110 * total;
+      int markOfTheKyzaj = 20 * total;
+      int malachiteGreen = 24 * total;
+      int chronotes = 5768 * total;
+      double xp = 41444.4 * 1.06 * total;
+      
+      
+      System.out.printf("%nYou will need the following materials:%nVulcanised Rubber%,20d%nAnimal Furs%,26d"
+                       +"%nFossilised Bone%,23d%nYu'biusk clay%,24d%nWarforged Bronze%,22d%nMark of the Kyzaj%,20d%n"
+                       +"Malachite Green%,22d%n%nYou will also recieve the following:%nChronotes%,30d%nExperience%,32.2f",
+                       vulcanisedRubber, animalFurs, fossilisedBone, yubiuskClay,
+                       warforgedBronze, markOfTheKyzaj, malachiteGreen, chronotes, xp);
+      
+      System.out.printf("%n%nWould you like to repeat this calculation? (y/n): ");
+      control = input.next().charAt(0);//this will be used as a loop control variable
+      
+    }while(Character.toUpperCase(control) == 'Y');//this will test whether the user wants to enter the loop
+                                                 //END do-while control == 'Y' redRumRelicsI
+    System.out.printf("Thank you for using the Red Rum Relics I Calculator (Created by OSIRIS)");
+  }//END redRumRelicsI
+  
+  public static String greenGobboGoodiesI()//same as previous method but for different collection
+  {//BEGIN greenGobboGoodiesI
+    int testRelic = 12;
+    int testAmount = 15;
+    return String.format("This is an even nicer test");
+  }//END greenGobboGoodiesI
+  
+  
+  public static void main(String[] args)//Main method 
+  { //BEGIN main method
+    String[] collections = {"Red Rum Relics I", "Green Gobbo Goodies I"};//Declaring the collections list
+    
+    System.out.printf("COLLECTION CALCULATOR%n%nCREATED BY: OSIRIS%n"
+                     + "The following collections are currently supported:%n");
+    for(int i = 0; i < collections.length; i++)//for loop that reads and numbers the items in the list 'collections'
+    {
+     System.out.printf(i + 1 + ".)" + " "); //formatting output
+     System.out.println(collections[i]);//reading the list
+    }
+    do
+    {
+      System.out.printf("%nPlease enter a value for the collections you would like to calculate: (or 0 to exit");
+      int selection = input.nextInt();//'selection' will be used to determine which collection the user wants to 
+      //calculate
+      
+      switch(selection)
+      {//BEGIN switch selection
+        case 0:
+          break;
+        case 1://the goal of case 0 is to return a formatted string that shows all materials, exp, and chronotes
+          redRumRelicsI();
+          break;
+        case 2://same as case 0 but for different collection
+          greenGobboGoodiesI();
+          break;
+        default:
+          System.out.printf("You have entered an incompatible value. Please try again: ");//used to catch invalid input
+          selection = input.nextInt();
+          
+    }//END switch selection
+    }while(Character.toUpperCase(selection) != 0);//END do-while 
+  } //END main method
+  
+
+  
+  
+}// END class Collections
