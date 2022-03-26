@@ -1,0 +1,54 @@
+/**
+ * @HernandezSkinner002PA2
+ * @authors Rafael Hernandez, Sarah Skinner
+ * @version 1.0 2022/03/24 09:12
+ * 
+ * PROGRAM PURPOSE: Create a program that tells an insured how much will be paid out if there is an earthquake.
+ * The payout will be based off of the richter scale and insured value of the home. 
+ */
+
+ //IMPORT statements to be used within the program
+ import java.util.Scanner;//class that will be used to capture user input
+ import java.util.Calendar;//class that will be used to print current date / time
+
+ public class HernandezSkinner002PA2
+ {//BEGIN public class HernandezSkinner002PA2
+    
+    private static String message = " ";//variable initialization for the String message
+    private static String coverage = " ";//variable initialization for the String coverage
+    private static double payout = 0.0;//variable initialization for the double payout
+    private static double deductible = 0.0;//variable initialization for the double deductible
+    private static Scanner input = new Scanner(System.in);//creating a new scanner object input used for grabbing user's input
+    private static boolean repeat = true;//variable initialization for boolean repeat
+    
+    public static void main(String[] args)
+    {//BEGIN main method
+
+    }//END main method
+
+    public static String promptInsuredName()
+    {//BEGIN promptInsuredName
+       System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake coverage Analyzer%n%nPlease enter your name: ");
+       return input.nextLine();
+    }//END promptInsuredName
+
+    public static double promptHomeInsVal()
+    {//BEGIN promptHomeInsVal
+      do
+      {//BEGIN do-while
+         double homeInsVal = 0.0;//initializing the homeInsVal variable
+         System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake Coverage Analyzer%n%nPlease enter your name: ");
+         return input.nextDouble();
+      }while(repeat == true);//END do, BEGIN while
+      
+    }//END promptHomeInsVal
+
+    public static void validateNumber(boolean repeat)
+    {//BEGIN validateNumber
+      repeat = true;
+      if(repeat != true)
+      {//BEGIN if repeat != true
+         System.out.printf("Warning: You entered an invalid integer or floating-point value.");
+      }//END if repeat != true
+    }//END validateNumber
+ }//END public class HernandezSkinner002PA2
