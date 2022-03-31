@@ -144,7 +144,7 @@
     public static void validateNumber(boolean repeat)
     {//BEGIN validateNumber
       repeat = repeat;
-      if(repeat != true)
+      if(repeat = true)
       {//BEGIN if repeat != true
         input.nextLine(); //clear buffer
         System.out.printf("Warning: You entered an invalid integer or floating-point value.");
