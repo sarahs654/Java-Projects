@@ -19,7 +19,7 @@
     private static double payout = 0.0;//variable initialization for the double payout
     private static double deductible = 0.0;//variable initialization for the double deductible
     private static Scanner input = new Scanner(System.in);//creating a new scanner object input used for grabbing user's input
-    private static boolean repeat = true;//variable initialization for boolean repeat
+    private static boolean repeat = false;//variable initialization for boolean repeat
     
     public static void main(String[] args)
     {//BEGIN main method
@@ -28,27 +28,85 @@
 
     public static String promptInsuredName()
     {//BEGIN promptInsuredName
-       System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake coverage Analyzer%n%nPlease enter your name: ");
-       return input.nextLine();
+      String insured; 
+      System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake coverage Analyzer%n%n"
+                          + "Please enter your name: ");
+      insured = input.nextLine();
+      return insured;
     }//END promptInsuredName
 
     public static double promptHomeInsVal()
     {//BEGIN promptHomeInsVal
+      double homeInsVal;
       do
       {//BEGIN do-while
-         double homeInsVal = 0.0;//initializing the homeInsVal variable
-         System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake Coverage Analyzer%n%nPlease enter your name: ");
-         return input.nextDouble();
+        repeat = false; 
+        System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake Coverage Analyzer%n%n"
+                            +" Please enter the insured value of your home: "); 
+        validateNumber(!input.hasNextDouble());
+        homeInsVal = input.nextDouble();
+        input.nextLine(); //clear buffer
+         
+        if (homeInsVal < 0)
+        {
+          System.out.printf("%nThe insured value of your home cannot be less than or equal to 0.");
+          repeat = true;
+        }
       }while(repeat == true);//END do, BEGIN while
+      return homeInsVal;
       
     }//END promptHomeInsVal
-
+    
+    public static double promptRichter()
+    {//BEGIN promptRichter
+      double richter;
+      do 
+      {//BEGIN do-while
+        repeat = false; 
+        System.out.printf("%n     9.0+         Total destruction."
+                            + "%n     8.0          Most structures fell."
+                            + "%n     7.0          Many buildings destroyed."
+                            + "%n     6.0          Many buildings considerably damaged, some collapsed."
+                            + "%n     4.5          Damage to poorly constructed buildings."
+                            + "%n     3.5          Felt by many people, no destruction."
+                            + "%n     0            Generally not felt by people.");
+        System.out.printf("%nPlease enter the Richter scale value for the earthquake:  ");
+        validateNumber(!input.hasNextDouble());
+        richter = input.nextDouble();
+        input.nextLine(); //clear buffer
+        
+        if (richter < 0) 
+        { //BEGIN if richter
+          System.out.printf("%nInvalid! Richter cannot be negative. Please re-enter%n");
+          repeat = true;
+        } //END if richter
+       
+      }while(repeat == true);//END do, BEGIN while
+      return richter;
+    }//END promptRichter
+      
     public static void validateNumber(boolean repeat)
     {//BEGIN validateNumber
-      repeat = true;
+      repeat = repeat;
       if(repeat != true)
       {//BEGIN if repeat != true
-         System.out.printf("Warning: You entered an invalid integer or floating-point value.");
+        input.nextLine(); //clear buffer
+        System.out.printf("Warning: You entered an invalid integer or floating-point value.");
       }//END if repeat != true
     }//END validateNumber
+    
+    public static void testRichter(double richter, double homeInsVal)
+    {//BEGIN testRichter
+      
+    }//END testRichter
+    
+    public static void addToCoverage(double richter) 
+    {//BEGIN addToCoverage
+      
+    }//END addToCoverage
+    
+    public static void thankYou()
+    {//BEGIN thankYou
+      System.out.printf("%nThank you for using the Earthquake Coverage Analyzer.");
+    }//END thankYou
  }//END public class HernandezSkinner002PA2
