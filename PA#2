@@ -98,8 +98,8 @@
       {//BEGIN do-while
         repeat = false; 
         System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake Coverage Analyzer%n%n"
-                            +" Please enter the insured value of your home: "); 
-        validateNumber(!input.hasNextDouble());
+                            +"Please enter the insured value of your home: "); 
+        validateNumber(input.hasNextDouble());
         homeInsVal = input.nextDouble();
         input.nextLine(); //clear buffer
          
@@ -127,7 +127,7 @@
                             + "%n     3.5          Felt by many people, no destruction."
                             + "%n     0            Generally not felt by people.");
         System.out.printf("%nPlease enter the Richter scale value for the earthquake:  ");
-        validateNumber(!input.hasNextDouble());
+        validateNumber(input.hasNextDouble());
         richter = input.nextDouble();
         input.nextLine(); //clear buffer
         
@@ -144,7 +144,7 @@
     public static void validateNumber(boolean repeat)
     {//BEGIN validateNumber
       repeat = repeat;
-      if(repeat = true)
+      if(repeat != true)
       {//BEGIN if repeat != true
         input.nextLine(); //clear buffer
         System.out.printf("Warning: You entered an invalid integer or floating-point value.");
