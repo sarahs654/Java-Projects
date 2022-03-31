@@ -66,8 +66,14 @@
             correct = input.next().charAt(0);
             
           } while(Character.toUpperCase(correct) == 'N');
+          
+          // addToCoverage();
+          System.out.printf("%nDo you have another property? Enter 'Y' or 'N':  ");
+          another = input.next().charAt(0);
+          
         } while(Character.toUpperCase(another) == 'Y');
       } //END while cont == 'Y'
+      printThankYou();
       
     }//END main method
 
