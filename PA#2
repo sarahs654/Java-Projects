@@ -56,8 +56,14 @@
           do { //BEGIN do while correct == 'N'
             homeInsVal = promptHomeInsVal();
             richter = promptRichter();
-            //shit idk about testRichter
+            //fuck testrichter
             
+            
+            System.out.printf("%nYour Name: %S"
+                                + "%nHome's Insured Value $%,20.2f"
+                                + "%nRichter Scale: %,2.2f", insured, homeInsVal, richter);
+            System.out.printf("%nIs this information correct? 'Y' or 'N':  ");
+            correct = input.next().charAt(0);
             
           } while(Character.toUpperCase(correct) == 'N');
         } while(Character.toUpperCase(another) == 'Y');
@@ -69,7 +75,7 @@
     {//BEGIN promptInsuredName 
       System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake coverage Analyzer%n%n"
                           + "Please enter your name: ");
-      return input.nextLine();
+      return input.next();
     }//END promptInsuredName
 
     public static double promptHomeInsVal()
