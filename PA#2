@@ -37,11 +37,6 @@
                           + " for your property? Enter 'Y' or 'N':  ");
       cont = input.next().charAt(0); //END PROMPT 1
       
-      if(Character.toUpperCase(cont) == 'N') 
-      { //BEGIN if cont == 'N'
-        printThankYou();
-      } // END if cont == 'N'
-      
       while(Character.toUpperCase(cont) == 'Y')
       { //BEGIN while cont == 'Y'
         insured = promptInsuredName(); //prompt for insured's name + store it in insured var
