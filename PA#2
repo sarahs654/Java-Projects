@@ -15,24 +15,61 @@
  {//BEGIN public class HernandezSkinner002PA2
     
     private static String message = " ";//variable initialization for the String message
-    private static String coverage = " ";//variable initialization for the String coverage
+    private static String coverage = " ";//variable initialization for the String coverage   
     private static double payout = 0.0;//variable initialization for the double payout
     private static double deductible = 0.0;//variable initialization for the double deductible
-    private static Scanner input = new Scanner(System.in);//creating a new scanner object input used for grabbing user's input
     private static boolean repeat = false;//variable initialization for boolean repeat
+    private static Scanner input = new Scanner(System.in);//created a new scanner object input
     
     public static void main(String[] args)
     {//BEGIN main method
-
+      
+      String insured = " ";//variable initialization for the String insured
+      double homeInsVal = 0.0;//variable initialization for the double homeInsVal
+      double richter = 0.0;//variable initialization for the double richter 
+      char cont = ' ';//variable initialization for the char cont
+      char correct = ' ';//variable initialization for the char correct
+      char another = ' ';//variable initialization for the char another
+      Calendar dateTime = Calendar.getInstance();//created a new calendar object dateTime
+      
+      System.out.printf("%nMUTUALLY ACCIDENTAL, INC."); //BEGIN PROMPT 1
+      System.out.printf("%n%nDo you want an analysis of earthquake coverage"
+                          + " for your property? Enter 'Y' or 'N':  ");
+      cont = input.next().charAt(0); //END PROMPT 1
+      
+      if(Character.toUpperCase(cont) == 'N') 
+      { //BEGIN if cont == 'N'
+        printThankYou();
+      } // END if cont == 'N'
+      
+      while(Character.toUpperCase(cont) == 'Y')
+      { //BEGIN while cont == 'Y'
+        insured = promptInsuredName(); //prompt for insured's name + store it in insured var
+        
+        coverage = String.format("%n%nPAYOUT FOR EARTHQUAKE " //initialize coverage var
+                                   + "DAMAGE"
+                                   + "%n%nHomeowner: %S"
+                                   + "%n%nDate: %tD"
+                                   + "%nTime: %tr%n", insured, dateTime, dateTime);
+        
+        do { //BEGIN do while another == 'Y'
+          do { //BEGIN do while correct == 'N'
+            homeInsVal = promptHomeInsVal();
+            richter = promptRichter();
+            //shit idk about testRichter
+            
+            
+          } while(Character.toUpperCase(correct) == 'N');
+        } while(Character.toUpperCase(another) == 'Y');
+      } //END while cont == 'Y'
+      
     }//END main method
 
     public static String promptInsuredName()
-    {//BEGIN promptInsuredName
-      String insured; 
+    {//BEGIN promptInsuredName 
       System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake coverage Analyzer%n%n"
                           + "Please enter your name: ");
-      insured = input.nextLine();
-      return insured;
+      return input.nextLine();
     }//END promptInsuredName
 
     public static double promptHomeInsVal()
@@ -97,16 +134,58 @@
     
     public static void testRichter(double richter, double homeInsVal)
     {//BEGIN testRichter
-      
+      if (richter >= 9.0) {//set payout, deductible, and message if richter >= 9.0
+        payout = homeInsVal * .90;
+        deductible = homeInsVal * .10;
+        message = "Total destruction.";
+     } else if (richter >= 8.0) {//set payout, deductible, and message if 9.0 > richter >= 8.0
+       payout = homeInsVal * .80;
+       deductible = homeInsVal * .20;
+       message = "Most structures fell.";
+     } else if (richter >= 7.0) {//set payout, deductible, and message if 8.0 > richter >= 7.0
+       payout = homeInsVal * .70;
+       deductible = homeInsVal * .30;
+       message = "Many buildings destroyed.";
+     } else if (richter >= 6.0) {//set payout, deductible, and message if 7.0 > richter >= 6.0
+       payout = homeInsVal * .60;
+       deductible = homeInsVal * .40;
+       message = "Many buildings considerably damaged, some collapsed.";
+     } else if (richter >= 4.5) {//set payout, deductible, and message if 6.0 > richter >= 4.5
+       payout = homeInsVal * .50;
+       deductible = homeInsVal * .50;
+       message = "Damage to poorly constructed buildings.";
+     } else if (richter >= 3.5) {//set payout, deductible, and message if 4.5 > richter >= 3.5
+       payout = 0;
+       deductible = 0;
+       message = "Felt by many people, no destruction.";
+     } else if (richter >= 0) {//set payout, deductible, and message if 3.5 > richter >= 0
+       payout = 0;
+       deductible = 0;
+       message = "Generally not felt by people.";
+     }//end if-else-if test
     }//END testRichter
     
     public static void addToCoverage(double richter) 
     {//BEGIN addToCoverage
-      
+      if (richter >= 0) 
+      {//BEGIN if richter >= 0
+        coverage += String.format("%n%-52s %4s $%,20.2f"
+                                    + "%nDeductible %47s %,20.2f"
+                                    + "%n%46s TOTAL %4s $%,20.2f%n",
+                                  message, " ", payout, " ", deductible, " ",
+                                  " ", payout + deductible);
+      }//END if richter >= 0
     }//END addToCoverage
     
-    public static void thankYou()
-    {//BEGIN thankYou
+    public static void printCoverage(double richter)
+    {//BEGIN printCoverage
+      if (richter >= 0) 
+        System.out.printf(coverage);
+      
+    }//END printCoverage
+    
+    public static void printThankYou()
+    {//BEGIN printThankYou
       System.out.printf("%nThank you for using the Earthquake Coverage Analyzer.");
-    }//END thankYou
+    }//END printThankYou
  }//END public class HernandezSkinner002PA2
