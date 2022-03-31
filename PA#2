@@ -56,7 +56,7 @@
           do { //BEGIN do while correct == 'N'
             homeInsVal = promptHomeInsVal();
             richter = promptRichter();
-            //fuck testrichter
+            testRichter(richter, homeInsVal);
             
             
             System.out.printf("%nYour Name: %S"
@@ -67,11 +67,18 @@
             
           } while(Character.toUpperCase(correct) == 'N');
           
-          // addToCoverage();
+          addToCoverage(richter);
+          
           System.out.printf("%nDo you have another property? Enter 'Y' or 'N':  ");
           another = input.next().charAt(0);
           
         } while(Character.toUpperCase(another) == 'Y');
+        printCoverage(richter); //PRINTING COVERAGE
+        
+        System.out.printf("%nMUTUALLY ACCIDENTAL, INC.");
+        System.out.printf("%nEnter 'Y' to continue with another homeowner or 'N' to exit:  "); //asking to restart loop with new homeowner
+        cont =  input.next().charAt(0); 
+        
       } //END while cont == 'Y'
       printThankYou();
       
