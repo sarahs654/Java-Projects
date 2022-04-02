@@ -95,17 +95,18 @@
         {
           repeat = false;
           System.out.printf("%nPlease enter the insured value of your home: "); 
-          validateNumber(!input.hasNextDouble());
-          homeInsVal = input.nextDouble();
-          input.nextLine(); //clear buffer
+          validateNumber(!input.hasNextDouble());          
+        } while(repeat == true);
+        
+        homeInsVal = input.nextDouble();
+        input.nextLine(); //clear buffer
+        
+        if (homeInsVal < 0)
+        {
+          System.out.printf("%nThe insured value of your home cannot be less than or equal to 0.");
+          repeat = true;
+        }
           
-          if (homeInsVal < 0)
-          {
-            System.out.printf("%nThe insured value of your home cannot be less than or equal to 0.");
-            repeat = true;
-          }
-          
-        }while(repeat == true);
       }while(repeat == true);
       return homeInsVal;
       
@@ -115,19 +116,22 @@
     public static double promptRichter()
     {//BEGIN promptRichter
       double richter;
-      do 
-      {//BEGIN do-while
-        repeat = false; 
-        System.out.printf("%nRichter Scale     Damage Assessment"
-                            + "%n     9.0+         Total destruction."
-                            + "%n     8.0          Most structures fell."
-                            + "%n     7.0          Many buildings destroyed."
-                            + "%n     6.0          Many buildings considerably damaged, some collapsed."
-                            + "%n     4.5          Damage to poorly constructed buildings."
-                            + "%n     3.5          Felt by many people, no destruction."
-                            + "%n     0            Generally not felt by people.");
-        System.out.printf("%nPlease enter the Richter scale value for the earthquake:  ");
-        validateNumber(!input.hasNextDouble());
+      do   
+      {
+        do
+        {//BEGIN do-while
+          repeat = false; 
+          System.out.printf("%nRichter Scale     Damage Assessment"
+                              + "%n     9.0+         Total destruction."
+                              + "%n     8.0          Most structures fell."
+                              + "%n     7.0          Many buildings destroyed."
+                              + "%n     6.0          Many buildings considerably damaged, some collapsed."
+                              + "%n     4.5          Damage to poorly constructed buildings."
+                              + "%n     3.5          Felt by many people, no destruction."
+                              + "%n     0            Generally not felt by people.");
+          System.out.printf("%nPlease enter the Richter scale value for the earthquake:  ");
+          validateNumber(!input.hasNextDouble());
+        } while(repeat == true);
         richter = input.nextDouble();
         input.nextLine(); //clear buffer
         
@@ -141,9 +145,9 @@
       return richter;
     }//END promptRichter
       
-    public static void validateNumber(boolean repeat)
+    public static void validateNumber(boolean repeat1)
     {//BEGIN validateNumber
-      repeat = repeat;
+      repeat = repeat1;
       if(repeat == true)
       {//BEGIN if repeat == true
         input.next(); //clear buffer
