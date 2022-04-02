@@ -90,23 +90,27 @@
     {//BEGIN promptHomeInsVal
       double homeInsVal;
       do
-      {//BEGIN do-while
-        repeat = false;
-        System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake Coverage Analyzer%n%n"
-                            +"Please enter the insured value of your home: "); 
-        validateNumber(!input.hasNextDouble());
-        homeInsVal = input.nextDouble();
-        input.nextLine(); //clear buffer
-         
-        if (homeInsVal < 0)
+      {
+        do
         {
-          System.out.printf("%nThe insured value of your home cannot be less than or equal to 0.");
-          repeat = true;
-        }
-      }while(repeat == true);//END do, BEGIN while
+          repeat = false;
+          System.out.printf("%nPlease enter the insured value of your home: "); 
+          validateNumber(!input.hasNextDouble());
+          homeInsVal = input.nextDouble();
+          input.nextLine(); //clear buffer
+          
+          if (homeInsVal < 0)
+          {
+            System.out.printf("%nThe insured value of your home cannot be less than or equal to 0.");
+            repeat = true;
+          }
+          
+        }while(repeat == true);
+      }while(repeat == true);
       return homeInsVal;
       
-    }//END promptHomeInsVal
+      
+    }//END promptHomeInsVal    
     
     public static double promptRichter()
     {//BEGIN promptRichter
@@ -114,7 +118,8 @@
       do 
       {//BEGIN do-while
         repeat = false; 
-        System.out.printf("%n     9.0+         Total destruction."
+        System.out.printf("%nRichter Scale     Damage Assessment"
+                            + "%n     9.0+         Total destruction."
                             + "%n     8.0          Most structures fell."
                             + "%n     7.0          Many buildings destroyed."
                             + "%n     6.0          Many buildings considerably damaged, some collapsed."
@@ -128,7 +133,7 @@
         
         if (richter < 0) 
         { //BEGIN if richter
-          System.out.printf("%nInvalid! Richter cannot be negative. Please re-enter%n");
+          System.out.printf("%nInvalid! Richter cannot be negative. Please re-enter.%n");
           repeat = true;
         } //END if richter
        
