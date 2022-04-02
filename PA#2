@@ -92,11 +92,10 @@
       do
       {//BEGIN do-while
         repeat = false;
-        System.out.printf("%nMUTUALLY ACCIDENTAL, INC.%nEarthquake Coverage Analyzer%n%n"
-                            +"Please enter the insured value of your home: "); 
+        System.out.printf("%nPlease enter the insured value of your home: "); 
         validateNumber(!input.hasNextDouble());
         homeInsVal = input.nextDouble();
-        input.nextLine(); //clear buffer
+        input.next(); //clear buffer
          
         if (homeInsVal < 0)
         {
@@ -114,7 +113,8 @@
       do 
       {//BEGIN do-while
         repeat = false; 
-        System.out.printf("%n     9.0+         Total destruction."
+        System.out.printf("%nRichter Scale     Damage Assessment"
+                            + "%n     9.0+         Total destruction."
                             + "%n     8.0          Most structures fell."
                             + "%n     7.0          Many buildings destroyed."
                             + "%n     6.0          Many buildings considerably damaged, some collapsed."
@@ -124,11 +124,11 @@
         System.out.printf("%nPlease enter the Richter scale value for the earthquake:  ");
         validateNumber(!input.hasNextDouble());
         richter = input.nextDouble();
-        input.nextLine(); //clear buffer
+        input.next(); //clear buffer
         
         if (richter < 0) 
         { //BEGIN if richter
-          System.out.printf("%nInvalid! Richter cannot be negative. Please re-enter%n");
+          System.out.printf("%nInvalid! Richter cannot be negative. Please re-enter.%n");
           repeat = true;
         } //END if richter
        
